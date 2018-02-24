@@ -23,6 +23,8 @@ pin22.start(0)
 # While loop for initial test
 while True:
 	# Go forward both wheels
+	pin12.ChangeDutyCycle(100)
+	pin18.ChangeDutyCycle(100)
 	time.sleep(10000)
 	pin12.ChangeDutyCycle(0)
 	pin18.ChangeDutyCycle(0)
