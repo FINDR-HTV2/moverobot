@@ -25,4 +25,8 @@ while True:
 	# Go forward both wheels
 	pin12.ChangeDutyCycle(25)
 	pin18.ChangeDutyCycle(25)
+	time.sleep(10000)
+	pin12.ChangeDutyCycle(0)
+	pin18.ChangeDutyCycle(0)
+
 
