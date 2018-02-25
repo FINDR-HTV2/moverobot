@@ -195,12 +195,12 @@ dist_array = [0, 0, 0, 0]
 # While loop for initial test
 try:
 	while True:
-		# dist_array[0] = dist_array[1]
-		# dist_array[1] = dist_array[2]
-		# dist_array[2] = dist_array[3]
-		# dist_array[3] = getDistance(left_trigger, left_echo)
-		# print(dist_array)
-		# time.sleep(0.1)
+		dist_array[0] = dist_array[1]
+		dist_array[1] = dist_array[2]
+		dist_array[2] = dist_array[3]
+		dist_array[3] = getDistance(left_trigger, left_echo)
+		print(dist_array)
+		time.sleep(0.1)
 
 
 		# curr_dist_right = getDistance(right_trigger, right_echo)	
@@ -208,10 +208,10 @@ try:
 		# time.sleep(0.1)
 
 
-		# if (dist_array[0] + dist_array[1] + dist_array[2] + dist_array[3]) > 200:
-		# 	turn("left", 0.6)
-		# 	stop(1)
-		# 	goStraight("forward")
+		if (dist_array[0] + dist_array[1] + dist_array[2] + dist_array[3]) > 200:
+			turn("left", 0.6)
+			stop(1)
+			goStraight("forward")
 
 
 		# elif abs(prev_dist_right - curr_dist_right) > 50:
@@ -222,8 +222,6 @@ try:
 		# 	pass
 		# prev_dist_left = curr_dist_left
 		# prev_dist_right = curr_dist_right
-		print(getDistance(right_trigger, right_echo))
-		time.sleep(0.1)
 except KeyboardInterrupt:
 	IO.cleanup()
 
