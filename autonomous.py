@@ -241,7 +241,7 @@ try:
 			end = time.time()
 			movement = ["forward", end - start]
 			csvData.append(movement)
-			turn("right", 0.5)
+			turn("right", 0.6)
 			loop_start_time = time.time()
 			stop(1)
 			start = time.time()
