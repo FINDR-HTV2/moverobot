@@ -166,6 +166,6 @@ try:
 		else:
 			pass
 		prev_dist_left = curr_dist_left
-		# prev_dist_right = curr_dist_right
+		prev_dist_right = curr_dist_right
 except KeyboardInterrupt:
 	IO.cleanup()
