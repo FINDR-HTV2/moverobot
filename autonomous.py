@@ -18,10 +18,10 @@ pin22 = IO.PWM(22, 100)
 # UNCOMMENT THE FOLLOWING LINES OF CODE ONCE WIRING IS DETERMINED
 
 # Ultrasonic Sensor 1 - LEFT SENSOR
-# left_trigger = 
-# left_echo =
-# IO.setup(left_trigger, IO.OUT)
-# IO.setup(left_echo, IO.IN)
+left_trigger = 11
+left_echo = 19
+IO.setup(left_trigger, IO.OUT)
+IO.setup(left_echo, IO.IN)
 
 # Ultrasonic Sensor 2 - RIGHT SENSOR
 # right_trigger = 
@@ -36,22 +36,22 @@ pin18.start(0)
 pin22.start(0)
 # While loop for initial test
 while True:
-	# Go forward both wheels
-	pin12.ChangeDutyCycle(50)
-	pin18.ChangeDutyCycle(50)
-	# sleep 1 second
-	time.sleep(1)
-	# Go stop the wheels with a 0% duty cycle
-	pin12.ChangeDutyCycle(0)
-	pin18.ChangeDutyCycle(0)
-	# delay 1 second
-	time.sleep(1)
+	# # Go forward both wheels
+	# pin12.ChangeDutyCycle(50)
+	# pin18.ChangeDutyCycle(50)
+	# # sleep 1 second
+	# time.sleep(1)
+	# # Go stop the wheels with a 0% duty cycle
+	# pin12.ChangeDutyCycle(0)
+	# pin18.ChangeDutyCycle(0)
+	# # delay 1 second
+	# time.sleep(1)
 
 	# Uncomment when we get distance up and running
 	# Right Distance:
 	# print (getDistance(right_trigger, right_echo))
 	# Left Distance: 
-	# print (getDistance(left_trigger, left_echo))
+	print (getDistance(left_trigger, left_echo))
 
 
 def getDistance(trigger, echo):
