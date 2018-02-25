@@ -58,7 +58,7 @@ def getDistance(trigger, echo):
 	    stop_time = time.time()
 	# diff. between initial start and stop time of echo
 	diff_time = stop_time - start_time
-	distance_to_return = ((diff_time * 34300) / 2)
+	distance_to_return = int(((diff_time * 34300) / 2))
 	return distance_to_return
 
 def activationFunc(right_dist, left_dist):
@@ -91,5 +91,5 @@ while True:
 
 	# Left Distance:
 	print (getDistance(left_trigger, left_echo))
-	time.sleep(1)
+	time.sleep(0.25)
 	
