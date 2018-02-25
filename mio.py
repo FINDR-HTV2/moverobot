@@ -47,23 +47,27 @@ try:
     while True:
         result = str(firebase.get('/myoEvents', None)).split("'")
         if result[3] == "fist":
-            print("Fist")
+            print("Fist - Stop")
             stop(.05)
         if result[3] == "waveIn":
-            print("Wave In")
+            print("Wave In - Left")
+            stop(0.02)
             fw_r.ChangeDutyCycle(80)
             rv_l.ChangeDutyCycle(80)
         if result[3] == "waveOut":
             print("Wave Out - Right")
+            stop(0.02)
             fw_l.ChangeDutyCycle(80)
             rv_r.ChangeDutyCycle(80)
         if result[3] == "doubleTap":
-            print("Double Tap")
-            goStraight("backward")
+            print("Double Tap - Forward")
+            stop(0.02)
+            goStraight("forward")
             time.sleep(.05)
         if result[3] == "fingers":
-            print("Fingers")
-            goStraight("forward")
+            print("Fingers - Backward")
+            stop(0.02)
+            goStraight("backward")
             time.sleep(.05)
 
 except KeyboardInterrupt:
