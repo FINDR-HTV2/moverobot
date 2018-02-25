@@ -110,6 +110,7 @@ while True:
 	# prev_dist = curr_dist 
 	# print (getDistance(left_trigger, left_echo))
 	# time.sleep(0.1)
+	time.sleep(1)
 	turn("left")
 	stop(1)
 	goStraight()
