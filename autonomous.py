@@ -1,7 +1,6 @@
 import RPi.GPIO as IO
 # import time
 import time
-import thread
 # BOARD/PIN NUMBERING STYLE
 IO.setmode(IO.BOARD)
 # PIN 12 and 16 - RIGHT WHEEL
@@ -136,26 +135,31 @@ def goStraight(direction):
 		pass
 
 
-# Initially goes straight
+# Initialized to go straight
 fw_r.ChangeDutyCycle(80)
 fw_l.ChangeDutyCycle(80)
 
-prev_dist_left = 0
-curr_dist_left = 0
-prev_dist_right = 0
-curr_dist_right = 0
+# Initialize prev and curr distances
+# prev_dist_left = 0
+# curr_dist_left = 0
+# prev_dist_right = 0
+# curr_dist_right = 0
 
+# Initialize array of three elements
+dist_array = [0, 0, 0]
 
 # While loop for initial test
 try:
 	while True:
-		curr_dist_left = getDistance(left_trigger, left_echo)
-		print(curr_dist_left)
+		dist_array[0] = dist_array[1]
+		dist_array[1] = dist_array[2]
+		dist_array[2] = getDistance(left_trigger, left_echo)
+		print(dist_array)
 		time.sleep(0.1)
 		# curr_dist_right = getDistance(right_trigger, right_echo)	
 		# print(curr_dist_right)
 		# time.sleep(0.1)
-		if abs(prev_dist_left - curr_dist_left) > 50:
+		if (dist_array[0] + dist_array[1] + dist_array[2]) > 150:
 			turn("left", 0.20)
 			stop(1)
 			goStraight("forward")
@@ -165,7 +169,7 @@ try:
 		# 	goStraight("forward")
 		# else:
 		# 	pass
-		prev_dist_left = curr_dist_left
+		# prev_dist_left = curr_dist_left
 		# prev_dist_right = curr_dist_right
 except KeyboardInterrupt:
 	IO.cleanup()
