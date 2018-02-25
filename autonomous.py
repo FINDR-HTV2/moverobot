@@ -229,7 +229,7 @@ try:
 		# time.sleep(0.1)
 
 
-		if ((dist_array_left[0] + dist_array_left[1] + dist_array_left[2] + dist_array_left[3]) > 200) and ((time.time() - loop_start_time) > 2.5):
+		if ((dist_array_left[0] + dist_array_left[1] + dist_array_left[2] + dist_array_left[3]) > 200) and ((time.time() - loop_start_time) > 2.25):
 			end = time.time()
 			movement = ["forward", end - start]
 			csvData.append(movement)
