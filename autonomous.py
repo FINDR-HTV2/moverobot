@@ -225,7 +225,7 @@ try:
 			end = time.time()
 			movement = ["forward", end - start]
 			csvData.append(movement)
-			turn("left", 0.6)
+			turn("left", 0.4)
 			stop(1)
 			start = time.time()
 			goStraight("forward")
