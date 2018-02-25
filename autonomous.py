@@ -146,20 +146,21 @@ fw_l.ChangeDutyCycle(80)
 # curr_dist_right = 0
 
 # Initialize array of three elements
-dist_array = [0, 0, 0]
+dist_array = [0, 0, 0, 0]
 
 # While loop for initial test
 try:
 	while True:
 		dist_array[0] = dist_array[1]
 		dist_array[1] = dist_array[2]
-		dist_array[2] = getDistance(left_trigger, left_echo)
+		dist_array[2] = dist_array[3]
+		dist_array[3] = getDistance(left_trigger, left_echo)
 		print(dist_array)
 		time.sleep(0.1)
 		# curr_dist_right = getDistance(right_trigger, right_echo)	
 		# print(curr_dist_right)
 		# time.sleep(0.1)
-		if (dist_array[0] + dist_array[1] + dist_array[2]) > 150:
+		if (dist_array[0] + dist_array[1] + dist_array[2] + dist_array[3]) > 200:
 			turn("left", 0.20)
 			stop(1)
 			goStraight("forward")
