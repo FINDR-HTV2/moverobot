@@ -53,7 +53,18 @@ def getDistance(trigger, echo):
     diff_time = stop_time - start_time
     distance_to_return = (diff_time * 34300) / 2
     return distance_to_return
-    
+
+def activationFunc(right_dist, left_dist):
+	'''
+	Returns which way to turn either left or right (1 or 0)
+	'''
+	# Define the threshold value [PLACEHOLDER UNTIL test values]
+	threshold = 1000
+	# Decide which way has a greater value and decide which way SAR should turn
+	direction = left_dist > right_dist
+
+
+
 # While loop for initial test
 while True:
 	# # Go forward both wheels
@@ -70,5 +81,9 @@ while True:
 	# Uncomment when we get distance up and running
 	# Right Distance:
 	# print (getDistance(right_trigger, right_echo))
-	# Left Distance:  
+	# Left Distance:
+	time.sleep(1)
 	print (getDistance(left_trigger, left_echo))
+	# right_dist, left_dist = getDistance(right_trigger), getDistance(left_trigger)
+	# Check if the threshold for turning has been achieved
+	# activationFunc(right_dist, left_dist)
