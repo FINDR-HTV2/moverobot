@@ -92,7 +92,7 @@ while True:
         while True:
             dist = getDistance()
             print ("Measured Distance = %.1f cm" % dist)
-            time.sleep(1)
+            time.sleep(4)
  
         # Reset by pressing CTRL + C
     except KeyboardInterrupt:
