@@ -70,7 +70,7 @@ def getDistance(trigger, echo):
 # 	direction = left_dist > right_dist
 # 	if (direction and (left_dist < ))
 
-def turn(direction):
+def turn(direction, sleep_time):
 	stop(1)
 	if direction == "right":
 		# Forward
@@ -82,6 +82,7 @@ def turn(direction):
 		rv_r.ChangeDutyCycle(80)
 		# Forwards
 		fw_l.ChangeDutyCycle(80)
+	time.sleep(sleep_time)
 
 def stop(stoptime):
 	fw_r.ChangeDutyCycle(0)
@@ -110,9 +111,7 @@ while True:
 	# prev_dist = curr_dist 
 	# print (getDistance(left_trigger, left_echo))
 	# time.sleep(0.1)
-	time.sleep(1)
-	turn("left")
-	stop(1)
+	turn("left", 0.75)
 	goStraight()
 
 	
