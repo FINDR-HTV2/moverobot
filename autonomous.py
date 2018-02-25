@@ -228,7 +228,7 @@ try:
 		# time.sleep(0.1)
 
 
-		if ((dist_array_left[0] + dist_array_left[1] + dist_array_left[2] + dist_array_left[3]) > 200) and ((time.time() - loop_start_time) > 1.5):
+		if ((dist_array_left[0] + dist_array_left[1] + dist_array_left[2] + dist_array_left[3]) > 200) and ((time.time() - loop_start_time) > 3):
 			end = time.time()
 			movement = ["forward", end - start]
 			csvData.append(movement)
@@ -237,7 +237,7 @@ try:
 			stop(1)
 			start = time.time()
 			goStraight("forward")
-		elif ((dist_array_right[0] + dist_array_right[1] + dist_array_right[2] + dist_array_right[3]) > 200) and ((time.time() - loop_start_time) > 1.5):
+		elif ((dist_array_right[0] + dist_array_right[1] + dist_array_right[2] + dist_array_right[3]) > 200) and ((time.time() - loop_start_time) > 3):
 			end = time.time()
 			movement = ["forward", end - start]
 			csvData.append(movement)
