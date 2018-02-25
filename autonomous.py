@@ -1,7 +1,7 @@
 import RPi.GPIO as IO
 # import time
 import time
-import numpy
+import thread
 # BOARD/PIN NUMBERING STYLE
 IO.setmode(IO.BOARD)
 # PIN 12 and 16 - RIGHT WHEEL
@@ -52,10 +52,10 @@ def getDistance(trigger, echo):
 	start_time = time.time()
 	stop_time = time.time()
 	# log start_time
-	if IO.input(echo) == 0:
+	while IO.input(echo) == 0:
 	    start_time = time.time()
 	# log time of echo to arrive
-	if IO.input(echo) == 1:
+	while IO.input(echo) == 1:
 	    stop_time = time.time()
 	# diff. between initial start and stop time of echo
 	diff_time = stop_time - start_time
@@ -70,34 +70,44 @@ def getDistance(trigger, echo):
 # 	direction = left_dist > right_dist
 # 	if (direction and (left_dist < ))
 
-# def turn(direction):
+def turn(direction):
+	stop(1)
+	if direction == "right":
+		# Forward
+		pin12.ChangeDutyCycle(80)
+		# Backwards
+		pin22.ChangeDutyCycle(80)
+	else:
+		# Backwards
+		pin16.ChangeDutyCycle(80)
+		# Forwards
+		pin18.ChangeDutyCycle(80)
 
-start = time.time()
+def stop(stoptime):
+	pin12.ChangeDutyCycle(0)
+	pin16.ChangeDutyCycle(0)
+	pin18.ChangeDutyCycle(0)
+	pin22.ChangeDutyCycle(0)
+	time.sleep(stoptime)
+
+def goStraight():
+	pin12.ChangeDutyCycle(80)
+	pin18.ChangeDutyCycle(80)
+
+pin12.ChangeDutyCycle(80)
+pin18.ChangeDutyCycle(80)
+
+prev_dist = 0
+curr_dist = 0
 
 # While loop for initial test
 while True:
-	curr_time = time.time()
-	if (curr_time - start) >= 5:
-		pin12.ChangeDutyCycle(0)
-		pin18.ChangeDutyCycle(0)
-	else:
-		pin12.ChangeDutyCycle(50)
-		pin18.ChangeDutyCycle(50)	
-	# # Go forward both wheels
-	
-	# # sleep 1 second
-	# time.sleep(1)
-	# # Go stop the wheels with a 0% duty cycle
-	# pin12.ChangeDutyCycle(0)
-	# pin18.ChangeDutyCycle(0)
-	# # delay 1 second
-	# time.sleep(1)
-
-	# Uncomment when we get distance up and running
-	# Right Distance:
-	# print (getDistance(right_trigger, right_echo))
-
-	# Left Distance:
+	curr_dist = getDistance(left_trigger, left_echo)
+	if abs(prev_dist - curr_dist) > 150:
+		turn("left")
+		stop(1)
+		goStraight()
+	prev_dist = curr_dist 
 	print (getDistance(left_trigger, left_echo))
 	time.sleep(0.1)
 
