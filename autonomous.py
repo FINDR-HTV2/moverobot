@@ -96,7 +96,7 @@ def turn(direction, sleep_time):
 	# Go in to the room
 	print("going in straight")
 	goStraight("forward")
-	time.sleep(0.5)
+	time.sleep(1)
 	stop(2)
 
 
@@ -122,6 +122,11 @@ def turn(direction, sleep_time):
 
 	# Backing out
 	print("backing out")
+	goStraight("backward")
+	time.sleep(1)
+	stop(2)
+
+	print("turning out")
 	if direction == "left":
 		# Everything else stationary
 		# Right Wheel turning
@@ -132,7 +137,7 @@ def turn(direction, sleep_time):
 	else:
 		pass
 	# Turning the thing
-	time.sleep(sleep_time)
+	time.sleep(sleep_time + 0.5)
 	stop(1)
 
 def stop(stoptime):
@@ -213,3 +218,4 @@ try:
 		# prev_dist_right = curr_dist_right
 except KeyboardInterrupt:
 	IO.cleanup()
+
