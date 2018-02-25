@@ -236,7 +236,7 @@ try:
 except KeyboardInterrupt:
 	movement = ["forward", time.time()-start]
 	csvData.append(movement)
-	myFile = open('movementMap.csv', 'w')
+	myFile = open('movementMap.csv', 'w+')
 	with myFile:
 		writer = csv.writer(myFile)
 		writer.writerows(csvData)
