@@ -228,20 +228,20 @@ try:
 		# time.sleep(0.1)
 
 
-		if ((dist_array_left[0] + dist_array_left[1] + dist_array_left[2] + dist_array_left[3]) > 200) and ((time.time() - loop_start_time) > 2):
+		if ((dist_array_left[0] + dist_array_left[1] + dist_array_left[2] + dist_array_left[3]) > 200) and ((time.time() - loop_start_time) > 1):
 			end = time.time()
 			movement = ["forward", end - start]
 			csvData.append(movement)
-			turn("left", 0.6)
+			turn("left", 0.7)
 			loop_start_time = time.time()
 			stop(1)
 			start = time.time()
 			goStraight("forward")
-		elif ((dist_array_right[0] + dist_array_right[1] + dist_array_right[2] + dist_array_right[3]) > 200) and ((time.time() - loop_start_time) > 2):
+		elif ((dist_array_right[0] + dist_array_right[1] + dist_array_right[2] + dist_array_right[3]) > 200) and ((time.time() - loop_start_time) > 1):
 			end = time.time()
 			movement = ["forward", end - start]
 			csvData.append(movement)
-			turn("right", 0.6)
+			turn("right", 0.7)
 			loop_start_time = time.time()
 			stop(1)
 			start = time.time()
