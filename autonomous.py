@@ -197,6 +197,8 @@ try:
 		indices_of_outliers = get_indices_of_outliers(dist_array)
 		print("the indices of outliers are")
 		print(indices_of_outliers)
+		if len(indices_of_outliers) != 0:
+			continue
 		if (dist_array[0] + dist_array[1] + dist_array[2] + dist_array[3]) > 200:
 			turn("left", 0.20)
 			stop(1)
