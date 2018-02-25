@@ -146,7 +146,7 @@ def turn(direction, sleep_time):
 	else:
 		pass
 	# Turning the thing
-	time.sleep(sleep_time + 0.5)
+	time.sleep(sleep_time + 0.3)
 	movement = [str("reverse"+direction), sleep_time + 0.3]
 	csvData.append(movement)
 	stop(1)
@@ -232,7 +232,7 @@ try:
 			end = time.time()
 			movement = ["forward", end - start]
 			csvData.append(movement)
-			turn("left", 0.6)
+			turn("left", 0.55)
 			loop_start_time = time.time()
 			stop(1)
 			start = time.time()
