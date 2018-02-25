@@ -90,6 +90,10 @@ def turn(direction, sleep_time):
 	time.sleep(sleep_time)
 	stop(1)
 	print ("turning")
+	# Go in to the room
+	print("going in straight")
+	goStraight("forward")
+	time.sleep(0.5)
 	# Scan Left
 	print("scanning left")
 	fw_r.ChangeDutyCycle(80)
