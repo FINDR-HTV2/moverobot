@@ -213,7 +213,7 @@ try:
 		# 	stop(1)
 		# 	goStraight("forward")
 
-			
+
 		# elif abs(prev_dist_right - curr_dist_right) > 50:
 		# 	turn("right", 0.20)
 		# 	stop(1)
@@ -222,7 +222,7 @@ try:
 		# 	pass
 		# prev_dist_left = curr_dist_left
 		# prev_dist_right = curr_dist_right
-		print("right sensor value: " + getDistance(right_trigger, right_echo))
+		print(getDistance(right_trigger, right_echo))
 except KeyboardInterrupt:
 	IO.cleanup()
 
