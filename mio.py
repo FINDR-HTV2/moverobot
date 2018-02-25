@@ -51,18 +51,20 @@ try:
             stop(.05)
         if result[3] == "waveIn":
             print("Wave In")
-            goStraight("forward")
-            time.sleep(.05)
+            fw_r.ChangeDutyCycle(80)
+            rv_l.ChangeDutyCycle(80)
         if result[3] == "waveOut":
-            print("Wave Out")
-            goStraight("backward")
-            time.sleep(.05)
+            print("Wave Out - Right")
+            fw_l.ChangeDutyCycle(80)
+            rv_r.ChangeDutyCycle(80)
         if result[3] == "doubleTap":
             print("Double Tap")
-            pass
+            goStraight("backward")
+            time.sleep(.05)
         if result[3] == "fingers":
             print("Fingers")
-            pass
+            goStraight("forward")
+            time.sleep(.05)
 
 except KeyboardInterrupt:
     IO.cleanup()
