@@ -82,8 +82,19 @@ while True:
 	# Right Distance:
 	# print (getDistance(right_trigger, right_echo))
 	# Left Distance:
-	time.sleep(1)
-	print (getDistance(left_trigger, left_echo))
+	
 	# right_dist, left_dist = getDistance(right_trigger), getDistance(left_trigger)
 	# Check if the threshold for turning has been achieved
 	# activationFunc(right_dist, left_dist)
+	
+
+	try:
+        while True:
+            dist = distance()
+            print ("Measured Distance = %.1f cm" % dist)
+            time.sleep(1)
+ 
+        # Reset by pressing CTRL + C
+    except KeyboardInterrupt:
+        print("Measurement stopped by User")
+        GPIO.cleanup()
