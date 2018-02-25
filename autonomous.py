@@ -200,7 +200,7 @@ try:
 		# print(curr_dist_right)
 		# time.sleep(0.1)
 		if (dist_array[0] + dist_array[1] + dist_array[2] + dist_array[3]) > 200:
-			turn("left", 0.20)
+			turn("left", 0.6)
 			stop(1)
 			goStraight("forward")
 		# elif abs(prev_dist_right - curr_dist_right) > 50:
@@ -213,4 +213,3 @@ try:
 		# prev_dist_right = curr_dist_right
 except KeyboardInterrupt:
 	IO.cleanup()
-
