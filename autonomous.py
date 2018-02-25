@@ -89,10 +89,10 @@ def activationFunc(right_dist, left_dist):
 	
 
 	try:
-        while True:
-            dist = getDistance()
-            print ("Measured Distance = %.1f cm" % dist)
-            time.sleep(4)
+		while True:
+	        dist = getDistance(left_trigger, left_echo)
+	        print ("Measured Distance = %.1f cm" % dist)
+	        time.sleep(4)
  
         # Reset by pressing CTRL + C
     except KeyboardInterrupt:
