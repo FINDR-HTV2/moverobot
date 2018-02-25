@@ -240,5 +240,6 @@ except KeyboardInterrupt:
 	with myFile:
 		writer = csv.writer(myFile)
 		writer.writerows(csvData)
+	myFile.close()
 	IO.cleanup()
 
