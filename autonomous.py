@@ -196,8 +196,10 @@ fw_l.ChangeDutyCycle(80)
 # prev_dist_right = 0
 # curr_dist_right = 0
 
-# Initialize array of three elements
-dist_array = [0, 0, 0, 0]
+# Initialize left array
+dist_array_left = [0, 0, 0, 0]
+# Initialize right array
+dist_array_right = [0, 0, 0, 0]
 
 # While loop for initial test
 csvData = []
@@ -206,11 +208,18 @@ start = time.time()
 loop_start_time = 0
 try:
 	while True:
-		dist_array[0] = dist_array[1]
-		dist_array[1] = dist_array[2]
-		dist_array[2] = dist_array[3]
-		dist_array[3] = getDistance(left_trigger, left_echo)
-		print(dist_array)
+		dist_array_left[0] = dist_array_left[1]
+		dist_array_left[1] = dist_array_left[2]
+		dist_array_left[2] = dist_array_left[3]
+		dist_array_left[3] = getDistance(left_trigger, left_echo)
+		print(dist_array_left)
+		time.sleep(0.1)
+
+		dist_array_right[0] = dist_array_right[1]
+		dist_array_right[1] = dist_array_right[2]
+		dist_array_right[2] = dist_array_right[3]
+		dist_array_right[3] = getDistance(right_trigger, right_echo)
+		print(dist_array_right)
 		time.sleep(0.1)
 
 
@@ -219,7 +228,7 @@ try:
 		# time.sleep(0.1)
 
 
-		if ((dist_array[0] + dist_array[1] + dist_array[2] + dist_array[3]) > 200) and ((time.time() - loop_start_time) > 1.5):
+		if ((dist_array_left[0] + dist_array_left[1] + dist_array_left[2] + dist_array_left[3]) > 200) and ((time.time() - loop_start_time) > 1.5):
 			end = time.time()
 			movement = ["forward", end - start]
 			csvData.append(movement)
@@ -228,7 +237,17 @@ try:
 			stop(1)
 			start = time.time()
 			goStraight("forward")
-
+		elif ((dist_array_right[0] + dist_array_right[1] + dist_array_right[2] + dist_array_right[3]) > 200) and ((time.time() - loop_start_time) > 1.5):
+			end = time.time()
+			movement = ["forward", end - start]
+			csvData.append(movement)
+			turn("right", 0.5)
+			loop_start_time = time.time()
+			stop(1)
+			start = time.time()
+			goStraight("forward")
+		else:
+			pass
 
 		# elif abs(prev_dist_right - curr_dist_right) > 50:
 		# 	turn("right", 0.20)
