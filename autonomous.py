@@ -145,6 +145,27 @@ def goStraight(direction):
 		pass
 
 
+def is_outlier(value, p25, p75):
+    """Check if value is an outlier
+    """
+    lower = p25 - 1.5 * (p75 - p25)
+    upper = p75 + 1.5 * (p75 - p25)
+    return value <= lower or value >= upper
+ 
+ 
+def get_indices_of_outliers(values):
+    """Get outlier indices (if any)
+    """
+    p25 = np.percentile(values, 25)
+    p75 = np.percentile(values, 75)
+     
+    indices_of_outliers = []
+    for ind, value in enumerate(values):
+        if is_outlier(value, p25, p75):
+            indices_of_outliers.append(ind)
+    return indices_of_outliers
+ 
+
 # Initialized to go straight
 fw_r.ChangeDutyCycle(80)
 fw_l.ChangeDutyCycle(80)
@@ -170,6 +191,11 @@ try:
 		# curr_dist_right = getDistance(right_trigger, right_echo)	
 		# print(curr_dist_right)
 		# time.sleep(0.1)
+
+		# Find outliers
+		indices_of_outliers = get_indices_of_outliers(dist_array)
+		print("the indices of outliers are")
+		print(indices_of_outliers)
 		if (dist_array[0] + dist_array[1] + dist_array[2] + dist_array[3]) > 200:
 			turn("left", 0.20)
 			stop(1)
