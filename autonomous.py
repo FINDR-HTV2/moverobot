@@ -31,7 +31,7 @@ time.sleep(2)
 
 # Ultrasonic Sensor 2 - RIGHT SENSOR SETUP
 right_trigger = 13
-right_echo = 21
+right_echo = 23
 IO.setup(right_trigger, IO.OUT)
 IO.setup(right_echo, IO.IN)
 
@@ -214,9 +214,13 @@ try:
 		dist_array[3] = getDistance(left_trigger, left_echo)
 		print(dist_array)
 		time.sleep(0.1)
+
+
 		# curr_dist_right = getDistance(right_trigger, right_echo)	
 		# print(curr_dist_right)
 		# time.sleep(0.1)
+
+
 		if (dist_array[0] + dist_array[1] + dist_array[2] + dist_array[3]) > 200:
 			end = time.time()
 			movement = ["forward", end - start]
@@ -225,6 +229,8 @@ try:
 			stop(1)
 			start = time.time()
 			goStraight("forward")
+
+
 		# elif abs(prev_dist_right - curr_dist_right) > 50:
 		# 	turn("right", 0.20)
 		# 	stop(1)
