@@ -71,6 +71,8 @@ def getDistance(trigger, echo):
 # 	if (direction and (left_dist < ))
 
 def turn(direction, sleep_time):
+	# go a bit further before turn
+	time.sleep(0.75)
 	stop(1)
 	if direction == "left":
 		# Forward
