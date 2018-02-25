@@ -74,8 +74,8 @@ def getDistance(trigger, echo):
 def turn(direction, sleep_time):
 	# go a bit further before turn
 	print("going further")
-	time.sleep(0.20)
-	movement = ["forward", 0.20]
+	time.sleep(0.40)
+	movement = ["forward", 0.40]
 	csvData.append(movement)
 	stop(1)
 	if direction == "left":
@@ -131,7 +131,7 @@ def turn(direction, sleep_time):
 	print("backing out")
 	goStraight("backward")
 	time.sleep(1.2)
-	movement = ["backward", 1.2]
+	movement = ["backward", 1]
 	csvData.append(movement)
 	stop(2)
 
@@ -213,7 +213,6 @@ try:
 		dist_array_left[2] = dist_array_left[3]
 		dist_array_left[3] = getDistance(left_trigger, left_echo)
 		print(dist_array_left)
-		print("LEFT") 
 		time.sleep(0.1)
 
 		dist_array_right[0] = dist_array_right[1]
@@ -221,7 +220,6 @@ try:
 		dist_array_right[2] = dist_array_right[3]
 		dist_array_right[3] = getDistance(right_trigger, right_echo)
 		print(dist_array_right)
-		print("RIGHT")
 		time.sleep(0.1)
 
 
@@ -230,16 +228,16 @@ try:
 		# time.sleep(0.1)
 
 
-		if ((dist_array_left[0] + dist_array_left[1] + dist_array_left[2] + dist_array_left[3]) > 200):
+		if ((dist_array_left[0] + dist_array_left[1] + dist_array_left[2] + dist_array_left[3]) > 200) and ((time.time() - loop_start_time) > 2):
 			end = time.time()
 			movement = ["forward", end - start]
 			csvData.append(movement)
-			turn("left", 0.7)
+			turn("left", 0.8)
 			loop_start_time = time.time()
 			stop(1)
 			start = time.time()
 			goStraight("forward")
-		elif ((dist_array_right[0] + dist_array_right[1] + dist_array_right[2] + dist_array_right[3]) > 200):
+		elif ((dist_array_right[0] + dist_array_right[1] + dist_array_right[2] + dist_array_right[3]) > 200) and ((time.time() - loop_start_time) > 2):
 			end = time.time()
 			movement = ["forward", end - start]
 			csvData.append(movement)
