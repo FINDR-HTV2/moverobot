@@ -223,6 +223,7 @@ try:
 		# prev_dist_left = curr_dist_left
 		# prev_dist_right = curr_dist_right
 		print(getDistance(right_trigger, right_echo))
+		time.sleep(0.1)
 except KeyboardInterrupt:
 	IO.cleanup()
 
