@@ -91,5 +91,5 @@ while True:
 
 	# Left Distance:
 	print (getDistance(left_trigger, left_echo))
-	time.sleep(2)
+	time.sleep(1)
 	
