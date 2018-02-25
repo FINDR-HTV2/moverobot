@@ -66,7 +66,7 @@ def activationFunc(right_dist, left_dist):
 
 
 # While loop for initial test
-# while True:
+while True:
 	# # Go forward both wheels
 	# pin12.ChangeDutyCycle(50)
 	# pin18.ChangeDutyCycle(50)
@@ -81,20 +81,8 @@ def activationFunc(right_dist, left_dist):
 	# Uncomment when we get distance up and running
 	# Right Distance:
 	# print (getDistance(right_trigger, right_echo))
+
 	# Left Distance:
+	print (getDistance(left_trigger, left_echo))
+	time.sleep(4)
 	
-	# right_dist, left_dist = getDistance(right_trigger), getDistance(left_trigger)
-	# Check if the threshold for turning has been achieved
-	# activationFunc(right_dist, left_dist)
-	
-
-try:
-	while True:
-        dist = getDistance(left_trigger, left_echo)
-        print ("Measured Distance = %.1f cm" % dist)
-        time.sleep(4)
-
-    # Reset by pressing CTRL + C
-except KeyboardInterrupt:
-    print("Measurement stopped by User")
-    IO.cleanup()
