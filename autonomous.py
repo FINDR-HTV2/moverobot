@@ -85,6 +85,8 @@ def turn(direction, sleep_time):
 		# Forwards
 		fw_l.ChangeDutyCycle(80)
 	time.sleep(sleep_time)
+	goStraight()
+	time.sleep(1)
 
 def stop(stoptime):
 	fw_r.ChangeDutyCycle(0)
