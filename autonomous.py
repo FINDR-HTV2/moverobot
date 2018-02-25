@@ -71,6 +71,7 @@ def getDistance(trigger, echo):
 
 def turn(direction, sleep_time):
 	# go a bit further before turn
+	print("going further")
 	time.sleep(0.40)
 	stop(1)
 	if direction == "left":
@@ -88,22 +89,27 @@ def turn(direction, sleep_time):
 	# Turning the thing
 	time.sleep(sleep_time)
 	stop(1)
+	print ("turning")
 	# Scan Left
+	print("scanning left")
 	fw_r.ChangeDutyCycle(80)
 	rv_l.ChangeDutyCycle(80)
 	time.sleep(0.5)
 	stop(1)
 	# Scan Right
+	print ("scanning right")
 	rv_r.ChangeDutyCycle(80)
 	fw_l.ChangeDutyCycle(80)
 	time.sleep(1)
 	stop(1)
 	# Readjust
+	print ("readjusting")
 	fw_r.ChangeDutyCycle(80)
 	rv_l.ChangeDutyCycle(80)
 	time.sleep(0.5)
 	stop(1)
 	# Backing out
+	print("backing out")
 	if direction == "left":
 		# Everything else stationary
 		# Right Wheel turning
