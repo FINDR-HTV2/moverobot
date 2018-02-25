@@ -95,10 +95,18 @@ def stop(stoptime):
 	rv_l.ChangeDutyCycle(0)
 	time.sleep(stoptime)
 
-def goStraight():
-	fw_r.ChangeDutyCycle(80)
-	fw_l.ChangeDutyCycle(80)
+def goStraight(direction):
+	if (direction == "forward"):
+		fw_r.ChangeDutyCycle(80)
+		fw_l.ChangeDutyCycle(80)
+	elif (direction == "backward"):
+		rv_l.ChangeDutyCycle(80)
+		rv_r.ChangeDutyCycle(80)
+	else:
+		pass
 
+
+# Initially goes straight
 fw_r.ChangeDutyCycle(80)
 fw_l.ChangeDutyCycle(80)
 
@@ -108,18 +116,12 @@ curr_dist = 0
 # While loop for initial test
 while True:
 	curr_dist = getDistance(left_trigger, left_echo)
+	time.sleep(0.1)
 	if abs(prev_dist - curr_dist) > 50:
 		turn("left", 0.45)
 		stop(1)
-		goStraight()
+		goStraight("forward")
 	prev_dist = curr_dist 
-	print (getDistance(left_trigger, left_echo))
-	time.sleep(0.1)
-
-
-	# turn("left", 0.6)
-	# goStraight()
-	# turn("right", 0.6)
-	# goStraight()
-
+	# print (getDistance(left_trigger, left_echo))
+	# time.sleep(0.1)
 	
