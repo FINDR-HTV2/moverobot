@@ -91,28 +91,35 @@ def turn(direction, sleep_time):
 	time.sleep(sleep_time)
 	stop(1)
 	print ("turning")
+
+
 	# Go in to the room
 	print("going in straight")
 	goStraight("forward")
 	time.sleep(0.5)
-	# Scan Left
-	print("scanning left")
-	fw_r.ChangeDutyCycle(80)
-	rv_l.ChangeDutyCycle(80)
-	time.sleep(0.5)
-	stop(1)
-	# Scan Right
-	print ("scanning right")
-	rv_r.ChangeDutyCycle(80)
-	fw_l.ChangeDutyCycle(80)
-	time.sleep(1)
-	stop(1)
-	# Readjust
-	print ("readjusting")
-	fw_r.ChangeDutyCycle(80)
-	rv_l.ChangeDutyCycle(80)
-	time.sleep(0.5)
-	stop(1)
+	stop(2)
+
+
+	# # Scan Left
+	# print("scanning left")
+	# fw_r.ChangeDutyCycle(80)
+	# rv_l.ChangeDutyCycle(80)
+	# time.sleep(0.5)
+	# stop(1)
+	# # Scan Right
+	# print ("scanning right")
+	# rv_r.ChangeDutyCycle(80)
+	# fw_l.ChangeDutyCycle(80)
+	# time.sleep(1)
+	# stop(1)
+	# # Readjust
+	# print ("readjusting")
+	# fw_r.ChangeDutyCycle(80)
+	# rv_l.ChangeDutyCycle(80)
+	# time.sleep(0.5)
+	# stop(1)
+
+
 	# Backing out
 	print("backing out")
 	if direction == "left":
@@ -192,13 +199,6 @@ try:
 		# curr_dist_right = getDistance(right_trigger, right_echo)	
 		# print(curr_dist_right)
 		# time.sleep(0.1)
-
-		# Find outliers
-		indices_of_outliers = get_indices_of_outliers(dist_array)
-		print("the indices of outliers are")
-		print(indices_of_outliers)
-		if len(indices_of_outliers) != 0:
-			continue
 		if (dist_array[0] + dist_array[1] + dist_array[2] + dist_array[3]) > 200:
 			turn("left", 0.20)
 			stop(1)
@@ -213,3 +213,4 @@ try:
 		# prev_dist_right = curr_dist_right
 except KeyboardInterrupt:
 	IO.cleanup()
+
