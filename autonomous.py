@@ -66,7 +66,7 @@ def activationFunc(right_dist, left_dist):
 
 
 # While loop for initial test
-while True:
+# while True:
 	# # Go forward both wheels
 	# pin12.ChangeDutyCycle(50)
 	# pin18.ChangeDutyCycle(50)
