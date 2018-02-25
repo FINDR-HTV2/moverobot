@@ -88,13 +88,13 @@ def activationFunc(right_dist, left_dist):
 	# activationFunc(right_dist, left_dist)
 	
 
-	try:
-		while True:
-	        dist = getDistance(left_trigger, left_echo)
-	        print ("Measured Distance = %.1f cm" % dist)
-	        time.sleep(4)
- 
-        # Reset by pressing CTRL + C
-    except KeyboardInterrupt:
-        print("Measurement stopped by User")
-        IO.cleanup()
+try:
+	while True:
+        dist = getDistance(left_trigger, left_echo)
+        print ("Measured Distance = %.1f cm" % dist)
+        time.sleep(4)
+
+    # Reset by pressing CTRL + C
+except KeyboardInterrupt:
+    print("Measurement stopped by User")
+    IO.cleanup()
