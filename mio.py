@@ -3,6 +3,8 @@ import RPi.GPIO as IO
 import time
 firebase = firebase.FirebaseApplication('https://sarhtv2.firebaseio.com', None)
 
+# BOARD/PIN NUMBERING STYLE
+IO.setmode(IO.BOARD)
 # PIN 12 and 16 - RIGHT WHEEL
 IO.setup(12, IO.OUT)
 IO.setup(16, IO.OUT)
