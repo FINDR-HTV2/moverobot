@@ -2,7 +2,7 @@ import RPi.GPIO as IO
 # import time
 import time
 # BOARD NUMBERING
-IO.setmode(IO.B)
+IO.setmode(IO.BOARD)
 # PIN 12 and 16
 IO.setup(12, IO.OUT)
 IO.setup(16, IO.OUT)
