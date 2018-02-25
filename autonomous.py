@@ -11,10 +11,10 @@ IO.setup(16, IO.OUT)
 IO.setup(18, IO.OUT)
 IO.setup(22, IO.OUT)
 # Initialize Pins 12,16,18,22 as PWM for driving the wheels
-pin12 = IO.PWM(12, 100)
-pin16 = IO.PWM(16, 100)
-pin18 = IO.PWM(18, 100)
-pin22 = IO.PWM(22, 100)
+fw_r = IO.PWM(12, 100)
+rv_r = IO.PWM(16, 100)
+fw_l = IO.PWM(18, 100)
+rv_l = IO.PWM(22, 100)
 
 # UNCOMMENT THE FOLLOWING LINES OF CODE ONCE WIRING IS DETERMINED
 
@@ -35,10 +35,10 @@ time.sleep(2)
 # IO.setup(right_echo, IO.IN)
 
 # Start pins 12,16,18,22 with 0% duty cycle
-pin12.start(0)
-pin16.start(0)
-pin18.start(0)
-pin22.start(0)
+fw_r.start(0)
+rv_r.start(0)
+fw_l.start(0)
+rv_l.start(0)
 
 def getDistance(trigger, echo):
 	# Clear 
@@ -74,28 +74,28 @@ def turn(direction):
 	stop(1)
 	if direction == "right":
 		# Forward
-		pin12.ChangeDutyCycle(80)
+		fw_r.ChangeDutyCycle(80)
 		# Backwards
-		pin22.ChangeDutyCycle(80)
+		rv_l.ChangeDutyCycle(80)
 	else:
 		# Backwards
-		pin16.ChangeDutyCycle(80)
+		rv_r.ChangeDutyCycle(80)
 		# Forwards
-		pin18.ChangeDutyCycle(80)
+		fw_l.ChangeDutyCycle(80)
 
 def stop(stoptime):
-	pin12.ChangeDutyCycle(0)
-	pin16.ChangeDutyCycle(0)
-	pin18.ChangeDutyCycle(0)
-	pin22.ChangeDutyCycle(0)
+	fw_r.ChangeDutyCycle(0)
+	rv_r.ChangeDutyCycle(0)
+	fw_l.ChangeDutyCycle(0)
+	rv_l.ChangeDutyCycle(0)
 	time.sleep(stoptime)
 
 def goStraight():
-	pin12.ChangeDutyCycle(80)
-	pin18.ChangeDutyCycle(80)
+	fw_r.ChangeDutyCycle(80)
+	fw_l.ChangeDutyCycle(80)
 
-pin12.ChangeDutyCycle(80)
-pin18.ChangeDutyCycle(80)
+fw_r.ChangeDutyCycle(80)
+fw_l.ChangeDutyCycle(80)
 
 prev_dist = 0
 curr_dist = 0
