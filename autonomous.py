@@ -141,7 +141,7 @@ def turn(direction, sleep_time):
 		# Right Wheel turning
 		rv_r.ChangeDutyCycle(80)
 	elif direction == "right":
-		rv_l.ChangeDutyCycle(90)
+		rv_l.ChangeDutyCycle(95)
 		fw_r.ChangeDutyCycle(80)
 		# Everything else stationary
 	else:
@@ -229,7 +229,7 @@ try:
 		# time.sleep(0.1)
 
 
-		if ((dist_array_left[0] + dist_array_left[1] + dist_array_left[2] + dist_array_left[3]) > 200) and ((time.time() - loop_start_time) > 2):
+		if ((dist_array_left[0] + dist_array_left[1] + dist_array_left[2] + dist_array_left[3]) > 200) and ((time.time() - loop_start_time) > 2.5):
 			end = time.time()
 			movement = ["forward", end - start]
 			csvData.append(movement)
@@ -238,7 +238,7 @@ try:
 			stop(1)
 			start = time.time()
 			goStraight("forward")
-		elif ((dist_array_right[0] + dist_array_right[1] + dist_array_right[2] + dist_array_right[3]) > 200) and ((time.time() - loop_start_time) > 2):
+		elif ((dist_array_right[0] + dist_array_right[1] + dist_array_right[2] + dist_array_right[3]) > 200) and ((time.time() - loop_start_time) > 2.5):
 			end = time.time()
 			movement = ["forward", end - start]
 			csvData.append(movement)
