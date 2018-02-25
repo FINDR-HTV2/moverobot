@@ -64,11 +64,11 @@ def getDistance(trigger, echo):
 		distance_to_return = getDistance(trigger, echo)
 	return distance_to_return
 
-def moveRightLeft(right_dist, left_dist):
-	# Decide which way has a greater value and decide which way SAR should turn
-	# True = Left, False = Right
-	direction = left_dist > right_dist
-	if (direction and (left_dist < ))
+# def moveRightLeft(right_dist, left_dist):
+# 	# Decide which way has a greater value and decide which way SAR should turn
+# 	# True = Left, False = Right
+# 	direction = left_dist > right_dist
+# 	if (direction and (left_dist < ))
 
 # def turn(direction):
 
