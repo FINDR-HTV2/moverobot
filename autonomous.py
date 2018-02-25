@@ -2,6 +2,7 @@ import RPi.GPIO as IO
 # import time
 import time
 import numpy as np
+import csv
 # BOARD/PIN NUMBERING STYLE
 IO.setmode(IO.BOARD)
 # PIN 12 and 16 - RIGHT WHEEL
@@ -74,6 +75,8 @@ def turn(direction, sleep_time):
 	# go a bit further before turn
 	print("going further")
 	time.sleep(0.40)
+	movement = ["forward", 0.40]
+	csvData.append(movement)
 	stop(1)
 	if direction == "left":
 		# Forward
@@ -89,6 +92,8 @@ def turn(direction, sleep_time):
 		pass
 	# Turning the thing
 	time.sleep(sleep_time)
+	movement = [direction, sleep_time]
+	csvData.append(movement)
 	stop(1)
 	print ("turning")
 
@@ -97,6 +102,8 @@ def turn(direction, sleep_time):
 	print("going in straight")
 	goStraight("forward")
 	time.sleep(1)
+	movement = ["forward", 1]
+	csvData.append(movement)
 	stop(2)
 
 
@@ -124,6 +131,8 @@ def turn(direction, sleep_time):
 	print("backing out")
 	goStraight("backward")
 	time.sleep(1)
+	movement = ["backward", 1]
+	csvData.append(movement)
 	stop(2)
 
 	print("turning out")
@@ -138,6 +147,8 @@ def turn(direction, sleep_time):
 		pass
 	# Turning the thing
 	time.sleep(sleep_time + 0.5)
+	movement = [str("reverse"+direction), sleep_time + 0.5]
+	csvData.append(movement)
 	stop(1)
 
 def stop(stoptime):
@@ -171,7 +182,7 @@ def get_indices_of_outliers(values):
     """
     p25 = np.percentile(values, 25)
     p75 = np.percentile(values, 75)
-     
+
     indices_of_outliers = []
     for ind, value in enumerate(values):
         if is_outlier(value, p25, p75):
@@ -193,6 +204,8 @@ fw_l.ChangeDutyCycle(80)
 dist_array = [0, 0, 0, 0]
 
 # While loop for initial test
+csvData = []
+start = time.time()
 try:
 	while True:
 		dist_array[0] = dist_array[1]
@@ -209,8 +222,12 @@ try:
 
 
 		if (dist_array[0] + dist_array[1] + dist_array[2] + dist_array[3]) > 200:
+			end = time.time()
+			movement = ["forward", end - start]
+			csvData.append(movement)
 			turn("left", 0.6)
 			stop(1)
+			start = time.time()
 			goStraight("forward")
 
 
@@ -223,5 +240,12 @@ try:
 		# prev_dist_left = curr_dist_left
 		# prev_dist_right = curr_dist_right
 except KeyboardInterrupt:
+	movement = ["forward", time.time()-start]
+	csvData.append(movement)
+	myFile = open('movementMap.csv', 'w+')
+	with myFile:
+		writer = csv.writer(myFile)
+		writer.writerows(csvData)
+	myFile.close()
 	IO.cleanup()
 
