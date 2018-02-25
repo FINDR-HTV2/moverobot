@@ -170,16 +170,12 @@ def goStraight(direction):
 
 
 def is_outlier(value, p25, p75):
-    """Check if value is an outlier
-    """
     lower = p25 - 1.5 * (p75 - p25)
     upper = p75 + 1.5 * (p75 - p25)
     return value <= lower or value >= upper
  
  
 def get_indices_of_outliers(values):
-    """Get outlier indices (if any)
-    """
     p25 = np.percentile(values, 25)
     p75 = np.percentile(values, 75)
 
@@ -206,6 +202,8 @@ dist_array = [0, 0, 0, 0]
 # While loop for initial test
 csvData = []
 start = time.time()
+
+loop_start_time = 0
 try:
 	while True:
 		dist_array[0] = dist_array[1]
@@ -221,11 +219,12 @@ try:
 		# time.sleep(0.1)
 
 
-		if (dist_array[0] + dist_array[1] + dist_array[2] + dist_array[3]) > 200:
+		if ((dist_array[0] + dist_array[1] + dist_array[2] + dist_array[3]) > 200) and ((time.time() - loop_start_time) > 1.5):
 			end = time.time()
 			movement = ["forward", end - start]
 			csvData.append(movement)
 			turn("left", 0.5)
+			loop_start_time = time.time()
 			stop(1)
 			start = time.time()
 			goStraight("forward")
