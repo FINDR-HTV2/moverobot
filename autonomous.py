@@ -87,22 +87,22 @@ def turn(direction, sleep_time):
 		pass
 	# Turning the thing
 	time.sleep(sleep_time)
-	stop(0.5)
+	stop(1)
 	# Scan Left
 	fw_r.ChangeDutyCycle(80)
 	rv_l.ChangeDutyCycle(80)
 	time.sleep(0.5)
-	stop(0.5)
+	stop(1)
 	# Scan Right
 	rv_r.ChangeDutyCycle(80)
 	fw_l.ChangeDutyCycle(80)
 	time.sleep(1)
-	stop(0.5)
+	stop(1)
 	# Readjust
 	fw_r.ChangeDutyCycle(80)
 	rv_l.ChangeDutyCycle(80)
 	time.sleep(0.5)
-	stop(0.5)
+	stop(1)
 	# Backing out
 	if direction == "left":
 		# Everything else stationary
@@ -115,7 +115,7 @@ def turn(direction, sleep_time):
 		pass
 	# Turning the thing
 	time.sleep(sleep_time)
-	stop(0.5)
+	stop(1)
 
 def stop(stoptime):
 	fw_r.ChangeDutyCycle(0)
