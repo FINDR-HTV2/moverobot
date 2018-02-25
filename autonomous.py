@@ -130,7 +130,7 @@ def turn(direction, sleep_time):
 	# Backing out
 	print("backing out")
 	goStraight("backward")
-	time.sleep(1)
+	time.sleep(1.2)
 	movement = ["backward", 1]
 	csvData.append(movement)
 	stop(2)
@@ -146,8 +146,8 @@ def turn(direction, sleep_time):
 	else:
 		pass
 	# Turning the thing
-	time.sleep(sleep_time + 0.3)
-	movement = [str("reverse"+direction), sleep_time + 0.3]
+	time.sleep(sleep_time + 0.4)
+	movement = [str("reverse"+direction), sleep_time + 0.4]
 	csvData.append(movement)
 	stop(1)
 
