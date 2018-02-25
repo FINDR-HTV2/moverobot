@@ -72,7 +72,7 @@ def getDistance(trigger, echo):
 
 def turn(direction, sleep_time):
 	# go a bit further before turn
-	time.sleep(0.75)
+	time.sleep(0.65)
 	stop(1)
 	if direction == "left":
 		# Forward
@@ -119,7 +119,7 @@ while True:
 	print(curr_dist)
 	time.sleep(0.1)
 	if abs(prev_dist - curr_dist) > 50:
-		turn("left", 0.45)
+		turn("left", 0.20)
 		stop(1)
 		goStraight("forward")
 	prev_dist = curr_dist 
