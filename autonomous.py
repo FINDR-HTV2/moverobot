@@ -1,6 +1,7 @@
 import RPi.GPIO as IO
 # import time
 import time
+import numpy as np
 # BOARD/PIN NUMBERING STYLE
 IO.setmode(IO.BOARD)
 # PIN 12 and 16 - RIGHT WHEEL
