@@ -21,36 +21,41 @@ rv_r.start(0)
 fw_l.start(0)
 rv_l.start(0)
 
+
 def stop(stoptime):
-	fw_r.ChangeDutyCycle(0)
-	rv_r.ChangeDutyCycle(0)
-	fw_l.ChangeDutyCycle(0)
-	rv_l.ChangeDutyCycle(0)
-	time.sleep(stoptime)
+    fw_r.ChangeDutyCycle(0)
+    rv_r.ChangeDutyCycle(0)
+    fw_l.ChangeDutyCycle(0)
+    rv_l.ChangeDutyCycle(0)
+    time.sleep(stoptime)
+
+
 def goStraight(direction):
-	if (direction == "forward"):
-		fw_r.ChangeDutyCycle(80)
-		fw_l.ChangeDutyCycle(80)
-	elif (direction == "backward"):
-		rv_l.ChangeDutyCycle(80)
-		rv_r.ChangeDutyCycle(80)
-	else:
-		pass
+    if (direction == "forward"):
+        fw_r.ChangeDutyCycle(80)
+        fw_l.ChangeDutyCycle(80)
+    elif (direction == "backward"):
+        rv_l.ChangeDutyCycle(80)
+        rv_r.ChangeDutyCycle(80)
+    else:
+        pass
+
+
 try:
-	while True:
-	    result = str(firebase.get('/myoEvents', None)).split("'")
-	    if result[3] == "fist":
-	    	stop(.05)
-    	if result[3] == "waveIn":
-	    	goStraight("forward")
-	    	time.sleep(.05)
-    	if result[3] == "waveOut":
-	    	goStraight("backward")
-	    	time.sleep(.05)
-    	if result[3] == "doubleTap":
-	    	pass
-    	if result[3] == "fingers":
-	    	pass
+    while True:
+        result = str(firebase.get('/myoEvents', None)).split("'")
+        if result[3] == "fist":
+            stop(.05)
+        if result[3] == "waveIn":
+            goStraight("forward")
+            time.sleep(.05)
+        if result[3] == "waveOut":
+            goStraight("backward")
+            time.sleep(.05)
+        if result[3] == "doubleTap":
+            pass
+        if result[3] == "fingers":
+            pass
 
 except KeyboardInterrupt:
     IO.cleanup()
