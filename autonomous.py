@@ -23,6 +23,10 @@ left_echo = 19
 IO.setup(left_trigger, IO.OUT)
 IO.setup(left_echo, IO.IN)
 
+IO.output(left_trigger, False)
+print("waiting for sensor")
+time.sleep(2)
+
 # Ultrasonic Sensor 2 - RIGHT SENSOR
 # right_trigger = 
 # right_echo =
@@ -36,11 +40,15 @@ pin18.start(0)
 pin22.start(0)
 
 def getDistance(trigger, echo):
+	# Clear 
+	IO.output(trigger, False)
+	time.sleep(0.000002)
 	# Set right or left trigger to high
     IO.output(trigger, True)
     # 0.01ms set right or left trigger to LOW
     time.sleep(0.00001)
     IO.output(trigger, False)
+
     start_time = time.time()
     stop_time = time.time()
     # log start_time
@@ -52,6 +60,7 @@ def getDistance(trigger, echo):
     # diff. between initial start and stop time of echo
     diff_time = stop_time - start_time
     distance_to_return = (diff_time * 34300) / 2
+    IO.cleanup()
     return distance_to_return
 
 def activationFunc(right_dist, left_dist):
@@ -84,5 +93,5 @@ while True:
 
 	# Left Distance:
 	print (getDistance(left_trigger, left_echo))
-	time.sleep(4)
+	time.sleep(1)
 	
