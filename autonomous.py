@@ -44,7 +44,7 @@ def getDistance(trigger, echo):
 	IO.output(trigger, False)
 	time.sleep(0.000002)
 	# Set right or left trigger to high
-    IO.output(trigger, True)
+	IO.output(trigger, True)
     # 0.01ms set right or left trigger to LOW
     time.sleep(0.00001)
     IO.output(trigger, False)
