@@ -30,7 +30,7 @@ time.sleep(2)
 
 # Ultrasonic Sensor 2 - RIGHT SENSOR SETUP
 right_trigger = 13
-right_echo = 21
+right_echo = 23
 IO.setup(right_trigger, IO.OUT)
 IO.setup(right_echo, IO.IN)
 
