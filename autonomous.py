@@ -102,13 +102,16 @@ curr_dist = 0
 
 # While loop for initial test
 while True:
-	curr_dist = getDistance(left_trigger, left_echo)
-	if abs(prev_dist - curr_dist) > 50:
-		turn("left")
-		stop(1)
-		goStraight()
-	prev_dist = curr_dist 
-	print (getDistance(left_trigger, left_echo))
-	time.sleep(0.1)
+	# curr_dist = getDistance(left_trigger, left_echo)
+	# if abs(prev_dist - curr_dist) > 50:
+	# 	turn("left")
+	# 	stop(1)
+	# 	goStraight()
+	# prev_dist = curr_dist 
+	# print (getDistance(left_trigger, left_echo))
+	# time.sleep(0.1)
+	turn("left")
+	stop(1)
+	goStraight()
 
 	
