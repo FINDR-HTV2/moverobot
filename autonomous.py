@@ -213,6 +213,7 @@ try:
 		dist_array_left[2] = dist_array_left[3]
 		dist_array_left[3] = getDistance(left_trigger, left_echo)
 		print(dist_array_left)
+		print("LEFT") 
 		time.sleep(0.1)
 
 		dist_array_right[0] = dist_array_right[1]
@@ -220,6 +221,7 @@ try:
 		dist_array_right[2] = dist_array_right[3]
 		dist_array_right[3] = getDistance(right_trigger, right_echo)
 		print(dist_array_right)
+		print("RIGHT")
 		time.sleep(0.1)
 
 
