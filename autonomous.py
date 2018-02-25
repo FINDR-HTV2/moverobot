@@ -52,10 +52,10 @@ def getDistance(trigger, echo):
 	start_time = time.time()
 	stop_time = time.time()
 	# log start_time
-	while IO.input(echo) == 0:
+	if IO.input(echo) == 0:
 	    start_time = time.time()
 	# log time of echo to arrive
-	while IO.input(echo) == 1:
+	if IO.input(echo) == 1:
 	    stop_time = time.time()
 	# diff. between initial start and stop time of echo
 	diff_time = stop_time - start_time
