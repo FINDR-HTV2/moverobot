@@ -2,7 +2,7 @@ import RPi.GPIO as IO
 # import time
 import time
 # BOARD NUMBERING
-IO.setmode(IO.BCM)
+IO.setmode(IO.B)
 # PIN 12 and 16
 IO.setup(12, IO.OUT)
 IO.setup(16, IO.OUT)
@@ -24,8 +24,8 @@ pin22.start(0)
 while True:
 	# Go forward both wheels
 	pin12.ChangeDutyCycle(100)
-	# pin22.ChangeDutyCycle(100)
+	pin18.ChangeDutyCycle(100)
 	time.sleep(10000)
 	pin12.ChangeDutyCycle(0)
-	# pin22.ChangeDutyCycle(0)
+	pin18.ChangeDutyCycle(0)
 	time.sleep(10000)
