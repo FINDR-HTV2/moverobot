@@ -141,7 +141,7 @@ def turn(direction, sleep_time):
 		# Right Wheel turning
 		rv_r.ChangeDutyCycle(80)
 	elif direction == "right":
-		rv_l.ChangeDutyCycle(80)
+		rv_l.ChangeDutyCycle(90)
 		fw_r.ChangeDutyCycle(80)
 		# Everything else stationary
 	else:
