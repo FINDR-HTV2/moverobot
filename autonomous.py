@@ -103,7 +103,7 @@ curr_dist = 0
 # While loop for initial test
 while True:
 	curr_dist = getDistance(left_trigger, left_echo)
-	if abs(prev_dist - curr_dist) > 150:
+	if abs(prev_dist - curr_dist) > 50:
 		turn("left")
 		stop(1)
 		goStraight()
