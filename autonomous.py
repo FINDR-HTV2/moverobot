@@ -34,25 +34,6 @@ pin12.start(0)
 pin16.start(0)
 pin18.start(0)
 pin22.start(0)
-# While loop for initial test
-while True:
-	# # Go forward both wheels
-	# pin12.ChangeDutyCycle(50)
-	# pin18.ChangeDutyCycle(50)
-	# # sleep 1 second
-	# time.sleep(1)
-	# # Go stop the wheels with a 0% duty cycle
-	# pin12.ChangeDutyCycle(0)
-	# pin18.ChangeDutyCycle(0)
-	# # delay 1 second
-	# time.sleep(1)
-
-	# Uncomment when we get distance up and running
-	# Right Distance:
-	# print (getDistance(right_trigger, right_echo))
-	# Left Distance: 
-	print (getDistance(left_trigger, left_echo))
-
 
 def getDistance(trigger, echo):
 	# Set right or left trigger to high
@@ -72,4 +53,22 @@ def getDistance(trigger, echo):
     diff_time = stop_time - start_time
     distance_to_return = (diff_time * 34300) / 2
     return distance_to_return
+    
+# While loop for initial test
+while True:
+	# # Go forward both wheels
+	# pin12.ChangeDutyCycle(50)
+	# pin18.ChangeDutyCycle(50)
+	# # sleep 1 second
+	# time.sleep(1)
+	# # Go stop the wheels with a 0% duty cycle
+	# pin12.ChangeDutyCycle(0)
+	# pin18.ChangeDutyCycle(0)
+	# # delay 1 second
+	# time.sleep(1)
 
+	# Uncomment when we get distance up and running
+	# Right Distance:
+	# print (getDistance(right_trigger, right_echo))
+	# Left Distance:  
+	print (getDistance(left_trigger, left_echo))
