@@ -18,7 +18,7 @@ rv_l = IO.PWM(22, 100)
 
 # UNCOMMENT THE FOLLOWING LINES OF CODE ONCE WIRING IS DETERMINED
 
-# Ultrasonic Sensor 1 - LEFT SENSOR
+# Ultrasonic Sensor 1 - LEFT SENSOR SETUP
 left_trigger = 11
 left_echo = 19
 IO.setup(left_trigger, IO.OUT)
@@ -28,11 +28,11 @@ IO.output(left_trigger, False)
 print("waiting for sensor")
 time.sleep(2)
 
-# Ultrasonic Sensor 2 - RIGHT SENSOR
-# right_trigger = 
-# right_echo =
-# IO.setup(right_trigger, IO.OUT)
-# IO.setup(right_echo, IO.IN)
+# Ultrasonic Sensor 2 - RIGHT SENSOR SETUP
+right_trigger = 13
+right_echo = 21
+IO.setup(right_trigger, IO.OUT)
+IO.setup(right_echo, IO.IN)
 
 # Start pins 12,16,18,22 with 0% duty cycle
 fw_r.start(0)
@@ -79,14 +79,44 @@ def turn(direction, sleep_time):
 		fw_r.ChangeDutyCycle(80)
 		# Backwards
 		rv_l.ChangeDutyCycle(80)
-	else:
+	elif direction == "right":
 		# Backwards
 		rv_r.ChangeDutyCycle(80)
 		# Forwards
 		fw_l.ChangeDutyCycle(80)
+	else:
+		pass
+	# Turning the thing
 	time.sleep(sleep_time)
-	goStraight("forward")
+	stop(0.5)
+	# Scan Left
+	fw_r.ChangeDutyCycle(80)
+	rv_l.ChangeDutyCycle(80)
+	time.sleep(0.5)
+	stop(0.5)
+	# Scan Right
+	rv_r.ChangeDutyCycle(80)
+	fw_l.ChangeDutyCycle(80)
 	time.sleep(1)
+	stop(0.5)
+	# Readjust
+	fw_r.ChangeDutyCycle(80)
+	rv_l.ChangeDutyCycle(80)
+	time.sleep(0.5)
+	stop(0.5)
+	# Backing out
+	if direction == "left":
+		# Everything else stationary
+		# Right Wheel turning
+		rv_r.ChangeDutyCycle(80)
+	elif direction == "right":
+		rv_l.ChangeDutyCycle(80)
+		# Everything else stationary
+	else:
+		pass
+	# Turning the thing
+	time.sleep(sleep_time)
+	stop(0.5)
 
 def stop(stoptime):
 	fw_r.ChangeDutyCycle(0)
@@ -110,21 +140,32 @@ def goStraight(direction):
 fw_r.ChangeDutyCycle(80)
 fw_l.ChangeDutyCycle(80)
 
-prev_dist = 0
-curr_dist = 0
+prev_dist_left = 0
+curr_dist_left = 0
+prev_dist_right = 0
+curr_dist_right = 0
+
 
 # While loop for initial test
 try:
 	while True:
-		curr_dist = getDistance(left_trigger, left_echo)
-		print(curr_dist)
+		curr_dist_left = getDistance(left_trigger, left_echo)
+		print(curr_dist_left)
 		time.sleep(0.1)
-		if abs(prev_dist - curr_dist) > 50:
+		curr_dist_right = getDistance(right_trigger, right_echo)
+		print(curr_dist_right)
+		time.sleep(0.1)
+		if abs(prev_dist_left - curr_dist_left) > 50:
 			turn("left", 0.20)
 			stop(1)
 			goStraight("forward")
-		prev_dist = curr_dist 
-		# print (getDistance(left_trigger, left_echo))
-		# time.sleep(0.1)
+		elif abs(prev_dist_right - curr_dist_right) > 50:
+			turn("right", 0.20)
+			stop(1)
+			goStraight("forward")
+		else:
+			pass
+		prev_dist_left = curr_dist_left
+		prev_dist_right = curr_dist_right
 except KeyboardInterrupt:
 	IO.cleanup()
