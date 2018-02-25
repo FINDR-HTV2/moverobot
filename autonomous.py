@@ -1,6 +1,7 @@
 import RPi.GPIO as IO
 # import time
 import time
+import numpy
 # BOARD/PIN NUMBERING STYLE
 IO.setmode(IO.BOARD)
 # PIN 12 and 16 - RIGHT WHEEL
@@ -63,22 +64,27 @@ def getDistance(trigger, echo):
 		distance_to_return = getDistance(trigger, echo)
 	return distance_to_return
 
-def activationFunc(right_dist, left_dist):
-	'''
-	Returns which way to turn either left or right (1 or 0)
-	'''
-	# Define the threshold value [PLACEHOLDER UNTIL test values]
-	threshold = 1000
+def moveRightLeft(right_dist, left_dist):
 	# Decide which way has a greater value and decide which way SAR should turn
+	# True = Left, False = Right
 	direction = left_dist > right_dist
+	if (direction and (left_dist < ))
 
+# def turn(direction):
 
+start = time.time()
 
 # While loop for initial test
 while True:
+	curr_time = time.time()
+	if (curr_time - start) >= 5:
+		pin12.ChangeDutyCycle(0)
+		pin18.ChangeDutyCycle(0)
+	else:
+		pin12.ChangeDutyCycle(50)
+		pin18.ChangeDutyCycle(50)	
 	# # Go forward both wheels
-	# pin12.ChangeDutyCycle(50)
-	# pin18.ChangeDutyCycle(50)
+	
 	# # sleep 1 second
 	# time.sleep(1)
 	# # Go stop the wheels with a 0% duty cycle
@@ -94,4 +100,5 @@ while True:
 	# Left Distance:
 	print (getDistance(left_trigger, left_echo))
 	time.sleep(0.1)
+
 	
