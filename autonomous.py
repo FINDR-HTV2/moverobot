@@ -248,4 +248,3 @@ except KeyboardInterrupt:
 		writer.writerows(csvData)
 	myFile.close()
 	IO.cleanup()
-
